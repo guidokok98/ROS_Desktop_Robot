@@ -2,6 +2,7 @@
 Map voor ROS
 Install het volgende:
 - gebruik Ubuntu 18.04.5 LTS
+- installeer python, cuda apt install python
 - installeer ROS Melodic
 - installeer GIT, sudo apt-get git
 - evt git interface bijv. SmartGit https://www.syntevo.com/downloads/smartgit/smartgit-20_1_4.deb
