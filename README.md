@@ -22,3 +22,6 @@ hiervoor
 start commands:
 cd ~/catkin_ws && catkin_make
 roslaunch ros_desktop_robot ros_desktop_robot.launch
+
+TONI???????
+
