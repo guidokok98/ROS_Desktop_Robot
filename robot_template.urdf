@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot name="visual">
+<!-- coding is done in XML -->
+
+<!-- create here materials/colours -->
+<material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+<!-- this are macros ${bodylen} is auto replaced with the given value, can also be done with text!value=”marvin”. 
+Furthermore math (in floats) can be done within the ${}, like ${reflect*(width+.02)}  -->
+<xacro:property name="width" value="0.2" />
+<xacro:property name="bodylen" value="0.6" />
+
+<!-- or use the macro like this -->
+<xacro:macro name="default_origin">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+</xacro:macro>
+<!-- call it like this -->
+<xacro:default_origin />
+<!-- can even give a param with the macro  -->
+    <xacro:macro name="default_inertial" params="mass">
+        <inertial>
+                <mass value="${mass}" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                     iyy="1.0" iyz="0.0"
+                     izz="1.0" />
+        </inertial>
+    </xacro:macro>
+<!-- call it like this -->
+<xacro:default_inertial mass="10"/>
+
+<!-- create here links -->
+ <link name="base_link">
+    <!-- used for visual appearance -->
+    <visual>
+      <geometry>
+	<!-- list with all the different options -->
+        <cylinder length="${bodylen}" radius="${width}"/>
+	<box size="0.6 0.1 0.2"/>
+	<mesh filename="package://file-location"/>
+	<sphere radius="0.2"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <!-- used for collision detection -->
+    <collision>
+      <geometry>
+        <cylinder length="0.6" radius="0.2"/>
+      </geometry>
+    <!--  can also add contact_coefficients to define how links behave when the interact with each other -->
+    </collision>
+
+    <!-- used for collision detection -->
+    <inertial>
+      <mass value="10"/>     <!-- in Kilograms -->
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/> <!-- rotational inertia matrix -->
+    </inertial>
+  </link>
+
+<!-- can also define the friction or damping in the joints -->
+<!-- create here continuous joints -->
+  <joint name="head_swivel" type="continuous">
+    <parent link="base_link"/>
+    <child link="head"/>
+    <axis xyz="0 0 1"/>			<!-- select the axis to turn -->
+    <origin xyz="0 0 0.3"/>
+  </joint>
+
+<!-- create here revolute joints -->
+  <joint name="left_gripper_joint" type="revolute">
+    <axis xyz="0 0 1"/>			<!-- select the axis to turn -->
+    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>	<!-- gives the lower and upper range in radians-->
+    <origin rpy="0 0 0" xyz="0.2 0.01 0"/>
+    <parent link="gripper_pole"/>
+    <child link="left_gripper"/>
+  </joint>
+
+<!-- create here prismatic joints -->
+ <joint name="gripper_extension" type="prismatic">
+    <parent link="base_link"/>
+    <child link="gripper_pole"/>
+    <limit effort="1000.0" lower="-0.38" upper="0" velocity="0.5"/>	<!-- gives the lower and upper range in meters -->
+    <origin rpy="0 0 0" xyz="0.19 0 0.2"/>
+  </joint>

@@ -7,7 +7,12 @@ Install het volgende:
 - installeer ROS Melodic
 - installeer GIT, sudo apt-get git
 - evt git interface bijv. SmartGit https://www.syntevo.com/downloads/smartgit/smartgit-20_1_4.deb
-- voeg
+- voeg de git toe op locatie catkin_ws/src
+- sudo apt install ros-melodic-joint-state-publisher
+- sudo apt install ros-melodic-joint-state-publisher-gui
+- miss ook sudo apt-get install ros-melodic-urdf-tutorial ??
+
+
 
 EVT handige software:
 - Terminator, handige terminal om in meerdere windows ter gelijk te werken, sudo apt-get install terminator
