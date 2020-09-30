@@ -1,0 +1,2 @@
+open terminal in this folder
+roslaunch ros_desktop_robot.launch

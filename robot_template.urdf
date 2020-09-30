@@ -47,6 +47,7 @@ Furthermore math (in floats) can be done within the ${}, like ${reflect*(width+.
 	<mesh filename="package://file-location"/>
 	<sphere radius="0.2"/>
       </geometry>
+	<origin rpy="0 0 0" xyz="0 0 0"/>	<!-- moves link away from origin -->
       <material name="blue"/>
     </visual>
 
@@ -58,7 +59,7 @@ Furthermore math (in floats) can be done within the ${}, like ${reflect*(width+.
     <!--  can also add contact_coefficients to define how links behave when the interact with each other -->
     </collision>
 
-    <!-- used for collision detection -->
+    <!-- used for extra link informations and simulations -->
     <inertial>
       <mass value="10"/>     <!-- in Kilograms -->
       <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/> <!-- rotational inertia matrix -->

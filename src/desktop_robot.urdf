@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot name="desktop_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- create here macro params -->
+	<xacro:property name="base_r" value="0.5" />	<!-- base radius -->
+	<xacro:property name="base_h" value="0.6" />	<!-- base height -->
+	<xacro:property name="fl_w" value="0.7" />	<!-- first link width -->
+	<xacro:property name="fl_h" value="1" />	<!-- first link height -->
+	<xacro:property name="fl_d" value="0.7" />	<!-- first link depth -->
+
+	<!-- create here materials/colours -->
+	<material name="blue">
+	    <color rgba="0 0 1 1"/>
+	 </material>
+	 <material name="red">
+	    <color rgba="1 0 0 1"/>
+	 </material>
+	 <material name="green">
+	    <color rgba="0 1 0 1"/>
+	 </material>
+
+
+	<!-- create here links -->
+	 <link name="base_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<cylinder length="${base_h}" radius="${base_r}"/>
+	      </geometry>
+	      <material name="red"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${0.5*base_h}"/>
+	    </visual>
+	  </link>
+
+	 <link name="first_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<box size="${fl_d} ${fl_w} ${fl_h}"/>
+	      </geometry>
+	      <material name="blue"/>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	    </visual>
+	  </link>
+	<!-- create here continuous joints -->
+	  <joint name="base-fl_j" type="continuous">	<!-- create joint between base and first link-->
+	    <axis rpy="0 0 0" xyz="0 0 1"/>
+	    <parent link="base_link"/>
+	    <child link="first_link"/>
+	    <origin rpy="0 0 0" xyz="0 0 ${base_h+0.5*fl_h}"/>
+	  </joint>
+
+	<!-- create here revolute joints -->
+
+
+	<!-- create here prismatic joints -->
+</robot>
