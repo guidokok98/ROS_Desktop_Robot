@@ -10,7 +10,6 @@ Install het volgende:
 - voeg de git toe op locatie catkin_ws/src
 - sudo apt install ros-melodic-joint-state-publisher
 - sudo apt install ros-melodic-joint-state-publisher-gui
-- miss ook sudo apt-get install ros-melodic-urdf-tutorial ??
 
 
 

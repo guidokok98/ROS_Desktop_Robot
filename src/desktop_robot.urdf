@@ -110,6 +110,17 @@
 	      <origin rpy="0 0 0" xyz="0 0 ${fol_z/2}"/>
     </visual>
   </link>
+  <link name="fifth_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<box size="${ffl_x} ${ffl_y} ${ffl_z}"/>
+	      </geometry>
+	      <material name="magenta"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${fol_z/2}"/>
+    </visual>
+  </link>
 
 	<!-- create here continuous joints -->
 	  <joint name="base-fil_j" type="continuous">	<!-- create joint between base and first link-->
