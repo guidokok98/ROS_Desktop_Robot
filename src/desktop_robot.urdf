@@ -3,10 +3,31 @@
 
 	<!-- create here macro params -->
 	<xacro:property name="base_r" value="0.5" />	<!-- base radius -->
-	<xacro:property name="base_h" value="0.6" />	<!-- base height -->
-	<xacro:property name="fl_w" value="0.7" />	<!-- first link width -->
-	<xacro:property name="fl_h" value="1" />	<!-- first link height -->
-	<xacro:property name="fl_d" value="0.7" />	<!-- first link depth -->
+	<xacro:property name="base_z" value="0.6" />	<!-- base height -->
+
+	<xacro:property name="fil_y" value="0.7" />	<!-- first link width -->
+	<xacro:property name="fil_z" value="1" />	<!-- first link height -->
+	<xacro:property name="fil_x" value="0.7" />	<!-- first link depth -->
+
+	<xacro:property name="sel_y" value="0.7" />	<!-- second link width -->
+	<xacro:property name="sel_z" value="1" />	<!-- second link height -->
+	<xacro:property name="sel_x" value="0.2" />	<!-- second link depth -->
+
+	<xacro:property name="thl_y" value="0.7" />	<!-- third link width -->
+	<xacro:property name="thl_z" value="1" />	<!-- third link height -->
+	<xacro:property name="thl_x" value="0.2" />	<!-- third link depth -->
+
+	<xacro:property name="fol_y" value="0.2" />	<!-- fourth link width -->
+	<xacro:property name="fol_z" value="0.2" />	<!-- fourth link height -->
+	<xacro:property name="fol_x" value="0.2" />	<!-- fourth link depth -->
+
+	<xacro:property name="ffl_y" value="0.7" />	<!-- fifth link width -->
+	<xacro:property name="ffl_z" value="1" />	<!-- fifth link height -->
+	<xacro:property name="ffl_x" value="0.2" />	<!-- fifth link depth -->
+
+	<xacro:property name="sil_y" value="0.7" />	<!-- sixth link width -->
+	<xacro:property name="sil_z" value="1" />	<!-- sixth link height -->
+	<xacro:property name="sil_x" value="0.2" />	<!-- sixth link depth -->
 
 	<!-- create here materials/colours -->
 	<material name="blue">
@@ -18,18 +39,28 @@
 	 <material name="green">
 	    <color rgba="0 1 0 1"/>
 	 </material>
-
-
+	 <material name="white">
+	    <color rgba="1 1 1 1"/>
+	 </material>
+	 <material name="yellow">
+	    <color rgba="1 1 0 1"/>
+	 </material>
+	 <material name="magenta">
+	    <color rgba="1 0 1 1"/>
+	 </material>
+	 <material name="cyan">
+	    <color rgba="0 1 1 1"/>
+	 </material>
 	<!-- create here links -->
 	 <link name="base_link">
 	    <!-- used for visual appearance -->
 	    <visual>
 	      <geometry>
 		<!-- list with all the different options -->
-		<cylinder length="${base_h}" radius="${base_r}"/>
+		<cylinder length="${base_z}" radius="${base_r}"/>
 	      </geometry>
 	      <material name="red"/>
-	      <origin rpy="0 0 0" xyz="0 0 ${0.5*base_h}"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${0.5*base_z}"/>
 	    </visual>
 	  </link>
 
@@ -38,20 +69,75 @@
 	    <visual>
 	      <geometry>
 		<!-- list with all the different options -->
-		<box size="${fl_d} ${fl_w} ${fl_h}"/>
+		<box size="${fil_x} ${fil_y} ${fil_z}"/>
 	      </geometry>
 	      <material name="blue"/>
-	      <origin rpy="0 0 0" xyz="0 0 0"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${fil_z/2}"/>
 	    </visual>
 	  </link>
+
+	 <link name="second_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<box size="${sel_x} ${sel_y} ${sel_z}"/>
+	      </geometry>
+	      <material name="green"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${sel_z/2}"/>
+	    </visual>
+	 </link>
+	 
+  	 <link name="third_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<box size="${thl_x} ${thl_y} ${thl_z}"/>
+	      </geometry>
+	      <material name="yellow"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${thl_z/2}"/>
+    </visual>
+  </link>
+  <link name="fourth_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<box size="${fol_x} ${fol_y} ${fol_z}"/>
+	      </geometry>
+	      <material name="magenta"/>
+	      <origin rpy="0 0 0" xyz="0 0 ${fol_z/2}"/>
+    </visual>
+  </link>
+
 	<!-- create here continuous joints -->
-	  <joint name="base-fl_j" type="continuous">	<!-- create joint between base and first link-->
+	  <joint name="base-fil_j" type="continuous">	<!-- create joint between base and first link-->
 	    <axis rpy="0 0 0" xyz="0 0 1"/>
 	    <parent link="base_link"/>
 	    <child link="first_link"/>
-	    <origin rpy="0 0 0" xyz="0 0 ${base_h+0.5*fl_h}"/>
+	    <origin rpy="0 0 0" xyz="0 0 ${base_z}"/>
 	  </joint>
 
+	  <joint name="fil-sel_j" type="continuous">	<!-- create joint between base and first link-->
+	    <axis rpy="0 0 0" xyz="0 1 0"/>
+	    <parent link="first_link"/>
+	    <child link="second_link"/>
+	    <origin rpy="0 0 0" xyz="${fil_x/2} 0 ${fil_z}"/>
+	  </joint>
+
+	  <joint name="sel-thl_j" type="continuous">	<!-- create joint between base and first link-->
+	    <axis rpy="0 0 0" xyz="0 1 0"/>
+	    <parent link="second_link"/>
+	    <child link="third_link"/>
+	    <origin rpy="0 0 0" xyz="${sel_x/2} 0 ${sel_z}"/>
+	  </joint>
+	  <joint name="sl-thl_j" type="continuous">	<!-- create joint between base and first link-->
+	    <axis rpy="0 0 0" xyz="0 0 1"/>
+	    <parent link="third_link"/>
+	    <child link="fourth_link"/>
+	    <origin rpy="0 0 0" xyz="${thl_x/2} 0 ${thl_z}"/>
+	  </joint>
 	<!-- create here revolute joints -->
 
 

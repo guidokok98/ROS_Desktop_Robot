@@ -47,7 +47,7 @@ Furthermore math (in floats) can be done within the ${}, like ${reflect*(width+.
 	<mesh filename="package://file-location"/>
 	<sphere radius="0.2"/>
       </geometry>
-	<origin rpy="0 0 0" xyz="0 0 0"/>	<!-- moves link away from origin -->
+	<origin rpy="0 0 0" xyz="0 0 0"/><!-- moves link away from origin red=x,green=y,blue=z-->
       <material name="blue"/>
     </visual>
 
