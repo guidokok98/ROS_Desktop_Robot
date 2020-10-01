@@ -3,31 +3,31 @@
 
 	<!-- create here macro params -->
 	<xacro:property name="base_r" value="0.5" />	<!-- base radius -->
-	<xacro:property name="base_z" value="0.6" />	<!-- base height -->
+	<xacro:property name="base_z" value="0.1" />	<!-- base height -->
 
 	<xacro:property name="fil_y" value="0.7" />	<!-- first link width -->
-	<xacro:property name="fil_z" value="1" />	<!-- first link height -->
+	<xacro:property name="fil_z" value="0.2" />	<!-- first link height -->
 	<xacro:property name="fil_x" value="0.7" />	<!-- first link depth -->
 
-	<xacro:property name="sel_y" value="0.7" />	<!-- second link width -->
+	<xacro:property name="sel_y" value="0.2" />	<!-- second link width -->
 	<xacro:property name="sel_z" value="1" />	<!-- second link height -->
-	<xacro:property name="sel_x" value="0.2" />	<!-- second link depth -->
+	<xacro:property name="sel_x" value="0.1" />	<!-- second link depth -->
 
-	<xacro:property name="thl_y" value="0.7" />	<!-- third link width -->
+	<xacro:property name="thl_y" value="0.2" />	<!-- third link width -->
 	<xacro:property name="thl_z" value="1" />	<!-- third link height -->
-	<xacro:property name="thl_x" value="0.2" />	<!-- third link depth -->
+	<xacro:property name="thl_x" value="0.1" />	<!-- third link depth -->
 
 	<xacro:property name="fol_y" value="0.2" />	<!-- fourth link width -->
 	<xacro:property name="fol_z" value="0.2" />	<!-- fourth link height -->
 	<xacro:property name="fol_x" value="0.2" />	<!-- fourth link depth -->
 
 	<xacro:property name="ffl_y" value="0.7" />	<!-- fifth link width -->
-	<xacro:property name="ffl_z" value="1" />	<!-- fifth link height -->
-	<xacro:property name="ffl_x" value="0.2" />	<!-- fifth link depth -->
+	<xacro:property name="ffl_z" value="0.1" />	<!-- fifth link height -->
+	<xacro:property name="ffl_x" value="0.1" />	<!-- fifth link depth -->
 
-	<xacro:property name="sil_y" value="0.7" />	<!-- sixth link width -->
+	<xacro:property name="sil_y" value="0.1" />	<!-- sixth link width -->
 	<xacro:property name="sil_z" value="1" />	<!-- sixth link height -->
-	<xacro:property name="sil_x" value="0.2" />	<!-- sixth link depth -->
+	<xacro:property name="sil_x" value="0.1" />	<!-- sixth link depth -->
 
 	<!-- create here materials/colours -->
 	<material name="blue">
@@ -117,8 +117,19 @@
 		<!-- list with all the different options -->
 		<box size="${ffl_x} ${ffl_y} ${ffl_z}"/>
 	      </geometry>
-	      <material name="magenta"/>
-	      <origin rpy="0 0 0" xyz="0 0 ${fol_z/2}"/>
+	      <material name="cyan"/>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <link name="sixth_link">
+	    <!-- used for visual appearance -->
+	    <visual>
+	      <geometry>
+		<!-- list with all the different options -->
+		<box size="${sil_x} ${sil_y} ${sil_z}"/>
+	      </geometry>
+	      <material name="white"/>
+	      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
   </link>
 
@@ -141,13 +152,27 @@
 	    <axis rpy="0 0 0" xyz="0 1 0"/>
 	    <parent link="second_link"/>
 	    <child link="third_link"/>
-	    <origin rpy="0 0 0" xyz="${sel_x/2} 0 ${sel_z}"/>
+	    <origin rpy="0 0 0" xyz="0 ${sel_y} ${sel_z}"/>
 	  </joint>
-	  <joint name="sl-thl_j" type="continuous">	<!-- create joint between base and first link-->
-	    <axis rpy="0 0 0" xyz="0 0 1"/>
+
+	  <joint name="thl-fol_j" type="continuous">	<!-- create joint between base and first link-->
+	    <axis rpy="0 0 0" xyz="0 1 0"/>
 	    <parent link="third_link"/>
 	    <child link="fourth_link"/>
 	    <origin rpy="0 0 0" xyz="${thl_x/2} 0 ${thl_z}"/>
+	  </joint>
+
+	  <joint name="fol-ffl_j" type="continuous">	<!-- create joint between base and first link-->
+		    <axis rpy="0 0 0" xyz="0 0 1"/>
+		    <parent link="fourth_link"/>
+		    <child link="fifth_link"/>
+		    <origin rpy="0 0 0" xyz="${fol_x/2} 0 ${fol_z}"/>
+	  </joint>
+	  <joint name="ffl-sil_j" type="continuous">	<!-- create joint between base and first link-->
+		    <axis rpy="0 0 0" xyz="0 0 1"/>
+		    <parent link="fifth_link"/>
+		    <child link="sixth_link"/>
+		    <origin rpy="0 0 0" xyz="0 0 ${sil_z/2}"/>
 	  </joint>
 	<!-- create here revolute joints -->
 
