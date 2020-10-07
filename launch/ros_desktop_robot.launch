@@ -3,7 +3,7 @@
 
 <launch>
 
-  <arg name="model" default="$(find ros_desktop_robot)/src/desktop_robot.urdf"/>
+  <arg name="model" default="$(find ros_desktop_robot)/src/desktop_robot.urdf.xacro"/>
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find ros_desktop_robot)/rviz/urdf.rviz" />
 

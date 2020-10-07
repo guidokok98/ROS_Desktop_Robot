@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ros_desktop_robot
+    relative_path: src/desktop_robot.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/desktop_robot.srdf
+  CONFIG:
+    author_name: Guido Kok
+    author_email: 16047125@student.hhs.nl
+    generated_timestamp: 1602083632

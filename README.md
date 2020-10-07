@@ -19,6 +19,7 @@ voeg de git toe op locatie catkin_ws/src
 - git clone https://github.com/guidokok98/ros_desktop_robot.git
 - cd ~/catkin_ws 
 - catkin_make
+- sudo apt-get install ros-melodic-moveit
 
 Eventueel:
 - sudo apt install tree (typ in terminal tree en je ziet wat het doet)
@@ -29,4 +30,8 @@ Eventueel:
 # Start commands
 roslaunch ros_desktop_robot ros_desktop_robot.launch
 
+#useful URDF links
+http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch
 
+#useful move_it links
+https://www.theconstructsim.com/ros-movelt/
