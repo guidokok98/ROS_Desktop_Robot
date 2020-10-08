@@ -36,3 +36,4 @@ http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%
 
 #useful move_it links
 https://www.theconstructsim.com/ros-movelt/
+http://docs.ros.org/melodic/api/moveit_tutorials/html/doc/getting_started/getting_started.html
