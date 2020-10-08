@@ -28,6 +28,7 @@ Eventueel:
 
 
 # Start commands
+source ~/catkin_ws/devel/setup.bash
 roslaunch ros_desktop_robot ros_desktop_robot.launch
 
 #useful URDF links
