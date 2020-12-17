@@ -1,0 +1,10 @@
+-dealing YAML file of trajectory 
+	https://stackabuse.com/reading-and-writing-yaml-to-a-file-in-python/
+
+- Raspberry zero OTG mode for serial communication with PC
+	https://gist.github.com/gbaman/50b6cca61dd1c3f88f41
+	https://raspberrypi.stackexchange.com/questions/67907/debugging-usb-otg-serial-on-the-pi-zero-w
+
+- CRC
+	https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+	https://www.youtube.com/watch?v=izG7qT0EpBw
